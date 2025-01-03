@@ -1,43 +1,11 @@
 const { Builder } = require (`selenium-webdriver`);
-const LoginPage = require (`./webComponent/LoginPage`);
-const DashboardPage = require (`./webComponent/DashboardPage`);
 const CartPage = require (`./webComponent/CartPage`);
 const assert = require(`assert`);
-const fs = require(`fs`);
+ 
 
-const screenshotDir = `./screenshots/`;
-if(!fs.existsSync(screenshotDir)) {const { Builder } = require (`selenium-webdriver`);
-const CartPage = require (`../webComponent/CartPage`);
-const assert = require(`assert`);
-const fs = require(`fs`);
-require(`dotenv`).config();
+ 
 
-const browser = process.env.BROWSER;
-
-switch(browser.toLowerCase()) {
-    case `firefox` :
-        const firefox = require(`selenium-webdriver/firefox`);
-        options = new firefox.Options();
-        options.addArguments(`--headless`);
-
-    case `edge` :
-        const edge = require(`selenium-webdriver/edge`);
-        options = new edge.Options();
-       
-    case `chrome` :
-    default :
-        const chrome = require(`selenium-webdriver/chrome`);
-        options = new chrome.Options();
-        options.addArguments(`--headless`);
-        break;
-}
-
-const screenshotDir = `./screenshots/`;
-if(!fs.existsSync(screenshotDir)) {
-    fs.mkdirSync(screenshotDir, {recursive: true});
-}
-
-describe(`TestCase 3 #Regression`, function() {
+describe(`TestCase 3`, function() {
     this.timeout(40000);
     let driver;
 
@@ -62,12 +30,6 @@ describe(`TestCase 3 #Regression`, function() {
         assert.strictEqual(badgeText, `1`, `Expected cart badge to show "1"`);
     });
 
-    afterEach(async function () {
-        const screenshot = await driver.takeScreenshot();
-        const filepath = `${screenshotDir}${this.currentTest.title.replace(/\s+/g,`_`)}_${Date.now()}.png`
-        fs.writeFileSync (filepath, screenshot, `base64`);
-    });
-
     after(async function() {
         await driver.quit();
     });
@@ -84,4 +46,3 @@ describe(`TestCase 3 #Regression`, function() {
     after(async function() {
         await driver.quit();
     });
-});

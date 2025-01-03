@@ -10,8 +10,8 @@ class LoginPage {
     this.errorMessage = By.xpath(`//h3[.='Epic sadface: Username and password do not match any user in this service']`);
 }
 
-async navigate (){
-    await this.driver.get("https://www.saucedemo.com/");
+async navigate (browser){
+    await this.driver.get(browser);
 }
 async login(username, password){
     await this.driver.findElement(this.usernameInput).sendKeys(username);
@@ -19,7 +19,8 @@ async login(username, password){
     await this.driver.findElement(this.loginButton).click();
 
     }
-async getErrorMessage() {
+
+    async getErrorMessage() {
     try {
         const errorElement = await this.driver.findElement(this.errorMessage);
         return await errorElement.getText();

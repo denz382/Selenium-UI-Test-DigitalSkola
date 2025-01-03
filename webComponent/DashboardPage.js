@@ -4,7 +4,10 @@ class DashboardPage {
     constructor(driver){
         this.driver = driver;
     }
-
+    
+    async navigate (browser){
+        await this.driver.get(browser);
+    }
     async isOnDashboard(){
         const title = await this.driver.findElement(By.className(`title`));
         return title.getText();

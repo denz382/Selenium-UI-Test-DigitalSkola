@@ -2,9 +2,6 @@ const { Builder } = require (`selenium-webdriver`);
 const CartPage = require (`./webComponent/CartPage`);
 const assert = require(`assert`);
  
-
- 
-
 describe(`TestCase 3`, function() {
     this.timeout(40000);
     let driver;

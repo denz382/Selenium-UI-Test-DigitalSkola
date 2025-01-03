@@ -4,11 +4,6 @@ const DashboardPage = require (`./webComponent/DashboardPage`);
 const assert = require(`assert`);
 const fs = require(`fs`);
 
-const screenshotDir = `./screenshots/`;
-if(!fs.existsSync(screenshotDir)) {
-    fs.mkdirSync(screenshotDir, {recursive: true});
-}
-
 describe(`TestCase 1`, function() {
     this.timeout(40000);
     let driver;

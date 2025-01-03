@@ -35,14 +35,12 @@ describe(`TestCase 3`, function() {
     });
 });
 
-
-
-    afterEach(async function () {
-        const screenshot = await driver.takeScreenshot();
-        const filepath = `${screenshotDir}${this.currentTest.title.replace(/\s+/g,`_`)}_${Date.now()}.png`
-        fs.writeFileSync (filepath, screenshot, `base64`);
-    });
-
-    after(async function() {
+afterEach(async function () {
+    const screenshot = await driver.takeScreenshot();
+    const filepath = `${screenshotDir}${this.currentTest.title.replace(/\s+/g,`_`)}_${Date.now()}.png`
+    fs.writeFileSync (filepath, screenshot, `base64`);
+});
+   
+after(async function() {
         await driver.quit();
     });

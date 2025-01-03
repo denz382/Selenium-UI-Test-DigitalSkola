@@ -1,6 +1,5 @@
 const { Builder } = require (`selenium-webdriver`);
 const LoginPage = require (`./webComponent/LoginPage`);
-const DashboardPage = require (`./webComponent/DashboardPage`);
 const assert = require(`assert`);
 
 describe(`TestCase 2`, function() {
@@ -26,6 +25,12 @@ describe(`TestCase 2`, function() {
         assert.strictEqual(errorMessage, `Epic sadface: Username and password do not match any user in this service`, `Expected error message does not match`);
     });
     
+    afterEach(async function () {
+        const screenshot = await driver.takeScreenshot();
+        const filepath = `${screenshotDir}${this.currentTest.title.replace(/\s+/g,`_`)}_${Date.now()}.png`
+        fs.writeFileSync (filepath, screenshot, `base64`);
+    });
+
     after(async function() {
         await driver.quit();
     });
